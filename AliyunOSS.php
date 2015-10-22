@@ -84,4 +84,9 @@ class AliyunOSS {
     }
     return $objectKeys;
   }
+  
+  public function deleteObject()
+  {
+    ;
+  }
 }
