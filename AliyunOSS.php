@@ -1,6 +1,6 @@
 <?php
 
-namespace zhu\AliyunOSS;
+namespace Zhu\AliyunOSS;
 
 require_once __DIR__.'/oss/aliyun.php';
 
