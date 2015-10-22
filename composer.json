@@ -10,12 +10,12 @@
     },
     "authors": [
         {
-            "name": "John Lui",
-            "email": "wenhanlv@gmail.com"
-        },
-        {
             "name": "Kangfeng Zhu",
             "email": "zhukangfeng@gmail.com"
+        },
+        {
+            "name": "John Lui",
+            "email": "wenhanlv@gmail.com"
         }
     ],
   "autoload": {
