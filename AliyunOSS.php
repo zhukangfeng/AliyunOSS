@@ -94,6 +94,9 @@ class AliyunOSS {
      */
     public function deleteObject($bucketName, $key)
     {
+        if ($bucketName === null) {
+            $bucketName = $this->bucket;
+        }
         return $this->ossClient->deleteObject([
             'Bucket'    => $bucketName,
             'Key'       => $key
