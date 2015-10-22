@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-use zhukangfeng\AliyunOSS\AliyunOSS;
+use zhu\AliyunOSS\AliyunOSS;
 
 use Config;
 
