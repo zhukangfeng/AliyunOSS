@@ -103,16 +103,22 @@ class AliyunOSS {
     /**
      * 复制存储在阿里云OSS中的Object
      *
-     * @param string $sourceBucke 复制的源Bucket
+     * @param string $sourceBuckt 复制的源Bucket
      * @param string $sourceKey - 复制的的源Object的Key
      * @param string $destBucket - 复制的目的Bucket
      * @param string $destKey - 复制的目的Object的Key
      * @return Models\CopyObjectResult
      */
-    public function copyObject($sourceBucke, $sourceKey, $destBucket, $destKey)
+    public function copyObject($sourceBuckt, $sourceKey, $destBucket, $destKey)
     {
+        if ($sourceBuckt === null) {
+            $sourceBuckt = $this->bucket;
+        }
+        if ($destBucket === null) {
+            $destBucket = $this->bucket;
+        }
         return $this->ossClient->copyObject([
-            'SourceBucket'  => $sourceBucke,
+            'SourceBucket'  => $sourceBuckt,
             'SourceKey'     => $sourceKey,
             'DestBucket'    => $destBucket,
             'DestKey'       => $destKey
@@ -122,23 +128,30 @@ class AliyunOSS {
     /**
      * 移动存储在阿里云OSS中的Object
      *
-     * @param string $sourceBucke 复制的源Bucket
+     * @param string $sourceBuckt 复制的源Bucket
      * @param string $sourceKey - 复制的的源Object的Key
      * @param string $destBucket - 复制的目的Bucket
      * @param string $destKey - 复制的目的Object的Key
      * @return Models\CopyObjectResult
      */
-    public function moveObject($sourceBucke, $sourceKey, $destBucket, $destKey)
+    public function moveObject($sourceBuckt, $sourceKey, $destBucket, $destKey)
     {
+        if ($sourceBuckt === null) {
+            $sourceBuckt = $this->bucket;
+        }
+        if ($destBucket === null) {
+            $destBucket = $this->bucket;
+        }
+
         $result = $this->ossClient->copyObject([
-            'SourceBucket'  => $sourceBucke,
+            'SourceBucket'  => $sourceBuckt,
             'SourceKey'     => $sourceKey,
             'DestBucket'    => $destBucket,
             'DestKey'       => $destKey
         ]);
 
         if (is_object($result) && $result->getETag()) {
-            $this->deleteObject($sourceBucke, $sourceKey);
+            $this->deleteObject($sourceBuckt, $sourceKey);
         }
         
         return $result;
