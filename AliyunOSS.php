@@ -1,5 +1,4 @@
 <?php
-
 namespace Zhu\AliyunOSS;
 
 require_once __DIR__.'/oss/aliyun.php';
@@ -27,6 +26,20 @@ class AliyunOSS {
     public static function boot($serverName, $AccessKeyId, $AccessKeySecret)
     {
         return new AliyunOSS($serverName, $AccessKeyId, $AccessKeySecret);
+    }
+
+    /**
+     * 返回阿里云提供的接口类的实例
+     *
+     * @return  Aliyun\OSS\OSSclient
+     */
+    public function getOSSClient()
+    {
+        return OSSClient::factory([
+            OSSOptions::ENDPOINT => $this->serverName,
+            'AccessKeyId' => $this->AccessKeyId,
+            'AccessKeySecret' => $this->AccessKeySecret
+        ]);
     }
 
     public function setBucket($bucket)
