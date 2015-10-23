@@ -13,9 +13,15 @@ class AliyunOSS {
 
     protected $ossClient;
     protected $bucket;
+    protected $serverName;
+    protected $AccessKeyId;
+    protected $AccessKeySecret;
 
     public function __construct($serverName, $AccessKeyId, $AccessKeySecret)
     {
+        $this->serverName = $serverName;
+        $this->AccessKeyId = $AccessKeyId;
+        $this->AccessKeySecret = $AccessKeySecret;
         $this->ossClient = OSSClient::factory([
             OSSOptions::ENDPOINT => $serverName,
             'AccessKeyId' => $AccessKeyId,
